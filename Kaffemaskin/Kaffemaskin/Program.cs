@@ -5,7 +5,12 @@ namespace Kaffemaskin
 {
     interface ICoffee
     {
-        string MakeCoffee();
+        ICoffee Milk(bool gotMilk);
+        ICoffee Water(int amount);
+        ICoffee BeanRoast(string type);
+        ICoffee Size(int size);
+
+       void MakeCoffee();
 
     }
 
@@ -20,7 +25,7 @@ namespace Kaffemaskin
 
     class Coffee : ICoffee 
     {
-        private IEnumerable<CoffeePart> Coffee {get;set;}
+        private IEnumerable<CoffeePart> CoffeeParts {get;set;}
         private string Name {get; set;}
 
 
@@ -48,15 +53,15 @@ namespace Kaffemaskin
             return this;
         }
 
-        public ICoffee Size(string size)
+        public ICoffee Size(int size)
         {
-            ((List<CoffeePart>)CoffeeParts).Add(new CoffeePart(){Name = "Size", size="medium"});
+            ((List<CoffeePart>)CoffeeParts).Add(new CoffeePart(){Name = "Size", size=20});
             return this;
         }
 
         public void MakeCoffee()
         {
-            foreach (var cp in CoffeParts)
+            foreach (var cp in CoffeeParts)
             {
                 Console.WriteLine($"{Name} has {cp.gotMilk} {cp.Name} {cp.amount} {cp.type} {cp.size}");
             }
@@ -64,17 +69,7 @@ namespace Kaffemaskin
     }
 
 
-    class Latte : ICoffee
-    {
-        public int water = 20;
-        public string BeanRoast = "medium";
-        public bool GotMilk = true;
-        public string MakeCoffee()
-        {
-            string make = "Du har gjort en latte";
-            return make;
-        }
-    }
+ 
 
 
 
@@ -85,11 +80,11 @@ namespace Kaffemaskin
         {
 
 
-            //new Coffee("Latte")
-            //        .GotMilk()
-            //        .Roast()
-            //        .Size()
-            //    .MakeCoffe();
+            new Coffee("Latte")
+                    .Milk(true)
+                    .BeanRoast("Dark")
+                    .Size(20)
+                .MakeCoffee();
         }
     }
     //class Coffee : ICoffee 
