@@ -9,6 +9,15 @@ namespace Kaffemaskin
 
     }
 
+    class CoffeePart
+    {
+        public string Name {get; set;}
+        public bool gotMilk {get; set;}
+        public int amount {get; set;}
+        public string type {get; set;}
+        public int size {get; set;} 
+    }
+
     class Coffee : ICoffee 
     {
         private IEnumerable<CoffeePart> Coffee {get;set;}
@@ -24,15 +33,34 @@ namespace Kaffemaskin
         public ICoffee Milk(bool gotMilk)
         {
             ((List<CoffeePart>)CoffeeParts).Add(new CoffeePart(){Name = "Milk", gotMilk = true});
+            return this;
         }
 
         public ICoffee Water(int amount)
         {
             ((List<CoffeePart>)CoffeeParts).Add(new CoffeePart(){Name = "Water", amount = 30});
+            return this;
         }
 
+        public ICoffee BeanRoast(string type)
+        {
+            ((List<CoffeePart>)CoffeeParts).Add(new CoffeePart(){Name = "Roast", type="medium"});
+            return this;
+        }
 
+        public ICoffee Size(string size)
+        {
+            ((List<CoffeePart>)CoffeeParts).Add(new CoffeePart(){Name = "Size", size="medium"});
+            return this;
+        }
 
+        public void MakeCoffee()
+        {
+            foreach (var cp in CoffeParts)
+            {
+                Console.WriteLine($"{Name} has {cp.gotMilk} {cp.Name} {cp.amount} {cp.type} {cp.size}");
+            }
+        }
     }
 
 
