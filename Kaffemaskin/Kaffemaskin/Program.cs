@@ -6,19 +6,50 @@ namespace Kaffemaskin
     interface ICoffee
     {
         string MakeCoffee();
+
     }
+
+    class Coffee : ICoffee 
+    {
+        private IEnumerable<CoffeePart> Coffee {get;set;}
+        private string Name {get; set;}
+
+
+        public Coffee (string name)
+        {
+            CoffeeParts = new List<CoffeePart>();
+            Name = name;
+        }
+
+        public ICoffee Milk(bool gotMilk)
+        {
+            ((List<CoffeePart>)CoffeeParts).Add(new CoffeePart(){Name = "Milk", gotMilk = true});
+        }
+
+        public ICoffee Water(int amount)
+        {
+            ((List<CoffeePart>)CoffeeParts).Add(new CoffeePart(){Name = "Water", amount = 30});
+        }
+
+
+
+    }
+
 
     class Latte : ICoffee
     {
-        //vatten
-        //bönor
-        //mjölk
+        public int water = 20;
+        public string BeanRoast = "medium";
+        public bool GotMilk = true;
         public string MakeCoffee()
         {
             string make = "Du har gjort en latte";
             return make;
         }
     }
+
+
+
 
     class Program
     {
