@@ -4,10 +4,10 @@ namespace Kaffemaskin
 {
     class Beans
     {
-        string sort;
-        string country;
+        string[] type = { "ljus", "mellan", "mörk" };
+        string[] country = { "Colombia", "Central America", "Arabica" };
         bool eko;
-        string manufacturer;
+        string[] manufacturer = {"Gevalia", "Lövbergs Lila", "Starbucks" };
 
     }
     class Machine
@@ -20,6 +20,8 @@ namespace Kaffemaskin
     }
     class Cup
     {
+        string[] size = { "small", "medium", "large" };
+        string[] sort = { "latte", "espresso", "black", "cappucino" };
 
     }
     class Program
