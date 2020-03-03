@@ -12,21 +12,21 @@ namespace Kaffemaskin
             CoffeParts = new List<CoffePart>();
             Name = name;
         }
-    
-    
+
     }
 
     interface ICoffee
     {
         ICoffee GotMilk();
-        ICoffee Size(int );
+        ICoffee Size(int number);
+        ICoffee AddWater(int number);
 
     }
 
 
     class Beans
     {
-        string[] type = { "ljus", "mellan", "mörk" };
+        string[] roast = { "ljus", "mellan", "mörk" };
         string[] country = { "Colombia", "Central America", "Arabica" };
         bool eko;
         string[] manufacturer = {"Gevalia", "Lövbergs Lila", "Starbucks" };
