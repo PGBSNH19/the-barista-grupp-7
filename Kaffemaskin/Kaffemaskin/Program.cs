@@ -2,6 +2,17 @@
 
 namespace Kaffemaskin
 {
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            new Coffe("Latte")
+                    .GotMilk()
+                    .Roast()
+                    .Size()
+                .MakeCoffe();
+        }
+    }
     class Coffe : ICoffe 
     {
         private ICoffe<CoffePart> CoffeParts {get; set; }
@@ -46,12 +57,5 @@ namespace Kaffemaskin
         string[] size = { "small", "medium", "large" };
         string[] sort = { "latte", "espresso", "black", "cappucino" };
 
-    }
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-        }
     }
 }
