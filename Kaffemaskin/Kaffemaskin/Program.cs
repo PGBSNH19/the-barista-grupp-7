@@ -16,6 +16,13 @@ namespace Kaffemaskin
     
     }
 
+    interface ICoffee
+    {
+        ICoffee GotMilk();
+        ICoffee Size(int );
+
+    }
+
 
     class Beans
     {
