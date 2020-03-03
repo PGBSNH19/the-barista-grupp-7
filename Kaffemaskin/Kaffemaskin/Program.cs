@@ -2,6 +2,21 @@
 
 namespace Kaffemaskin
 {
+    class Coffe : ICoffe 
+    {
+        private ICoffe<CoffePart> CoffeParts {get; set; }
+        private string Name {get; set; }
+    
+        public Coffe (string name)
+        {
+            CoffeParts = new List<CoffePart>();
+            Name = name;
+        }
+    
+    
+    }
+
+
     class Beans
     {
         string[] type = { "ljus", "mellan", "mörk" };
@@ -15,7 +30,8 @@ namespace Kaffemaskin
         string sort;
         string bean;
         int temp;
-        int[] water = {2,4,6 };
+        int[] water = {2,4,6};
+        bool milk;
         
     }
     class Cup
