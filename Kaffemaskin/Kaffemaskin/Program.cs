@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Kaffemaskin
 {
-    interface IBeverage
+    public interface IBeverage
     {
         IBeverage AddMilk(bool gotMilk);
         IBeverage AddWater(int amount);
@@ -21,7 +21,7 @@ namespace Kaffemaskin
         public int size {get; set;} 
     }
 
-    class Espresso : IBeverage 
+    public class Espresso : IBeverage 
     {
         private IEnumerable<CoffeePart> CoffeeParts {get;set;}
         private string Name {get; set;}
@@ -67,11 +67,11 @@ namespace Kaffemaskin
         {
 
 
-            new Espresso("Latte")
-                    .Milk(true)
-                    .BeanRoast("Dark")
-                    .Size(20)
-                .MakeCoffee();
+            //new Espresso("Latte")
+            //        .Milk(true)
+            //        .BeanRoast("Dark")
+            //        .Size(20)
+            //    .MakeCoffee();
         }
     }
     //class Coffee : ICoffee 
