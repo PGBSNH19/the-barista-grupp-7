@@ -3,15 +3,13 @@ using System.Collections.Generic;
 
 namespace Kaffemaskin
 {
-    interface ICoffee
+    interface IBeverage
     {
-        ICoffee Milk(bool gotMilk);
-        ICoffee Water(int amount);
-        ICoffee BeanRoast(string type);
-        ICoffee Size(int size);
-
-       void MakeCoffee();
-
+        IBeverage AddMilk(bool gotMilk);
+        IBeverage AddWater(int amount);
+        IBeverage AddBeans(string type);
+  
+        void MakeCoffee(); 
     }
 
     class CoffeePart
@@ -23,39 +21,33 @@ namespace Kaffemaskin
         public int size {get; set;} 
     }
 
-    class Coffee : ICoffee 
+    class Espresso : IBeverage 
     {
         private IEnumerable<CoffeePart> CoffeeParts {get;set;}
         private string Name {get; set;}
 
 
-        public Coffee (string name)
+        public Espresso (string name)
         {
             CoffeeParts = new List<CoffeePart>();
             Name = name;
         }
 
-        public ICoffee Milk(bool gotMilk)
+        public IBeverage AddMilk(bool gotMilk)
         {
             ((List<CoffeePart>)CoffeeParts).Add(new CoffeePart(){Name = "Milk", gotMilk = true});
             return this;
         }
 
-        public ICoffee Water(int amount)
+        public IBeverage AddWater(int amount)
         {
             ((List<CoffeePart>)CoffeeParts).Add(new CoffeePart(){Name = "Water", amount = 30});
             return this;
         }
 
-        public ICoffee BeanRoast(string type)
+        public IBeverage AddBeans(string type)
         {
             ((List<CoffeePart>)CoffeeParts).Add(new CoffeePart(){Name = "Roast", type="medium"});
-            return this;
-        }
-
-        public ICoffee Size(int size)
-        {
-            ((List<CoffeePart>)CoffeeParts).Add(new CoffeePart(){Name = "Size", size=20});
             return this;
         }
 
@@ -69,18 +61,13 @@ namespace Kaffemaskin
     }
 
 
- 
-
-
-
-
     class Program
     {
         static void Main(string[] args)
         {
 
 
-            new Coffee("Latte")
+            new Espresso("Latte")
                     .Milk(true)
                     .BeanRoast("Dark")
                     .Size(20)
