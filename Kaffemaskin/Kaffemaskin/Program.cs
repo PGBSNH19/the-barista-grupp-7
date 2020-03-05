@@ -34,6 +34,7 @@ namespace Kaffemaskin
     {
         private IEnumerable<Ingredient> Ingredients { get; set; }
         public Ingredient Ingredient { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string CupType => throw new System.NotImplementedException();
 
         public Latte ()
         {
@@ -61,7 +62,6 @@ namespace Kaffemaskin
 
             IBeverage espresso = new FluentEspresso()
                 .AddWater(40)
-                .AddBeans()
                 .ToBeverage();
 
             //new Espresso("Latte")
