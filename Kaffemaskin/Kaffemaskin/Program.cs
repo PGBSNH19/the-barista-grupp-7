@@ -12,7 +12,6 @@ namespace Kaffemaskin
     class Ingredient
     {
         public string Name {get; set;}
-        public bool gotMilk {get; set;}
         public int amount {get; set;}
 
     }
@@ -26,7 +25,7 @@ namespace Kaffemaskin
 
     public class Water
     {
-        public int amount { get; set; }
+        public int Amount { get; set; }
     }
 
     public class Bean
@@ -35,29 +34,6 @@ namespace Kaffemaskin
         public BeanSorts Sort { get; set; }
     }
 
-    class Latte : IBeverage
-    {
-        private IEnumerable<Ingredient> Ingredients { get; set; }
-        public Ingredient Ingredient { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string CupType => throw new System.NotImplementedException();
-
-        public Latte ()
-        {
-            Ingredients = new List<Ingredient>();
-
-        }
-    }
-     class Espresso : IBeverage 
-    {
-        private IEnumerable<Ingredient> Ingredients {get;set;}
-        public Ingredient Ingredient { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        public Espresso ()
-        {
-            Ingredients = new List<Ingredient>();
-        }
-
-    }
 
 
     class Program
@@ -66,8 +42,9 @@ namespace Kaffemaskin
         {
 
             IBeverage espresso = new FluentEspresso()
-                .AddWater(40)
+                .AddWater(new Water() { Amount = 20 })
                 .ToBeverage();
+                
 
             //new Espresso("Latte")
             //        .Milk(true)

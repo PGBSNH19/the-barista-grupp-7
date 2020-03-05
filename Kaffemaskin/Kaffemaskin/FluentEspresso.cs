@@ -6,7 +6,6 @@ namespace Kaffemaskin
 {
     class FluentEspresso : IFluentEspresso
     {
-        
 
         public IFluentEspresso AddBeans()
         {
@@ -20,21 +19,20 @@ namespace Kaffemaskin
 
         public IFluentEspresso AddWater(int amount)
         {
-            Water water = new Water();
-            amount = water.amount;
+           
             return this;
         }
 
         public IBeverage ToBeverage()
         {
-            Console.WriteLine(Water.amount);
-            return this;
+           
+            throw new NotImplementedException();
         }
     }
 
     interface IFluentEspresso
     {
-        IFluentEspresso AddWater();
+        IFluentEspresso AddWater(int amount);
 
         IFluentEspresso AddBeans();
 
