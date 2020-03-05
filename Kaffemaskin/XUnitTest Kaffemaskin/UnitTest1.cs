@@ -9,9 +9,12 @@ namespace XUnitTest_Kaffemaskin
         [Fact]
         public void MakeBeverage()
         {
-            IBeverage espresso = new Espresso().AddBeans(new Bean).AddWater();
-            
-
+            IBeverage espresso = new Espresso().AddBeans(new Bean()
+            {
+                AmountInG = 5,
+                Sort = CoffeeSorts.Robusta
+            }).AddWater(30).Validate(e => e.Temperature > 90)
+            .ToBeverage();
             
 
         }

@@ -60,7 +60,7 @@ namespace Kaffemaskin
         {
 
             IBeverage espresso = new FluentEspresso()
-                .AddWater()
+                .AddWater(40)
                 .AddBeans()
                 .ToBeverage();
 

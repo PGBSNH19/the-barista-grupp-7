@@ -16,9 +16,24 @@ namespace Kaffemaskin
             throw new NotImplementedException();
         }
 
-        public IFluentEspresso AddWater()
+        public IFluentEspresso AddWater(int amount)
         {
-            throw new NotImplementedException();
+            string size;
+            if (amount == 20)
+            {
+                size = "small";
+            }
+            else if (amount == 40)
+            {
+                size = "medium";
+            }
+            else if (amount == 60)
+            {
+                size = "large";
+            }
+
+            return size;
+
         }
 
         public IBeverage ToBeverage()
@@ -29,7 +44,7 @@ namespace Kaffemaskin
 
     interface IFluentEspresso
     {
-        IFluentEspresso AddWater();
+        IFluentEspresso AddWater(int amount);
 
         IFluentEspresso AddBeans();
 
