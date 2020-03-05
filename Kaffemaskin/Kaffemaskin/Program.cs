@@ -17,48 +17,63 @@ namespace Kaffemaskin
         public string Name {get; set;}
         public bool gotMilk {get; set;}
         public int amount {get; set;}
-        public string type {get; set;}
-        public int size {get; set;} 
+
     }
 
-    class Bean
+    public enum BeanSorts
+    {
+        Arabica,
+        Columbia,
+        Robusta
+    }
+
+    public class Bean
     {
         public int AmountInG { get; set; }
-        public BeanSort Sort { get; set; }
+        public BeanSorts Sort { get; set; }
+    }
+
+    public class Latte : IBeverage
+    {
+        private IEnumerable<Ingredient> Ingredients { get; set; }
+
+        public Latte ()
+        {
+            Ingredients = new List<Ingredient>();
+
+        }
     }
     public class Espresso : IBeverage 
     {
-        private IEnumerable<Ingredient> CoffeeParts {get;set;}
-        private string Name {get; set;}
+        private IEnumerable<Ingredient> Ingredients {get;set;}
 
 
-        public Espresso (string name)
+        public Espresso ()
         {
-            CoffeeParts = new List<Ingredient>();
-            Name = name;
+            Ingredients = new List<Ingredient>();
         }
 
         public IBeverage AddMilk(bool gotMilk)
         {
-            ((List<Ingredient>)CoffeeParts).Add(new Ingredient(){Name = "Milk", gotMilk = true});
+            ((List<Ingredient>)Ingredients).Add(new Ingredient(){Name = "Milk", gotMilk = true});
             return this;
         }
 
         public IBeverage AddWater(int amount)
         {
-            ((List<Ingredient>)CoffeeParts).Add(new Ingredient(){Name = "Water", amount = 30});
+            ((List<Ingredient>)Ingredients).Add(new Ingredient(){Name = "Water", amount = 30});
             return this;
         }
 
         public IBeverage AddBeans(string type)
         {
-            ((List<Ingredient>)CoffeeParts).Add(new Ingredient(){Name = "Roast", type="medium"});
+            ((List<Ingredient>)Ingredients).Add(new Ingredient(){Name = "Roast", type="medium"});
             return this;
         }
 
         public void ToBeverage()
         {
-            foreach (var cp in CoffeeParts)
+            foreach (var cp in Ingredients)
             {
                 Console.WriteLine($"{Name} has {cp.gotMilk} {cp.Name} {cp.amount} {cp.type} {cp.size}");
             }
