@@ -24,6 +24,11 @@ namespace Kaffemaskin
         Robusta
     }
 
+    public class Water
+    {
+        public int amount { get; set; }
+    }
+
     public class Bean
     {
         public int AmountInG { get; set; }

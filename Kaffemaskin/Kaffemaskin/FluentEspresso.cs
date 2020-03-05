@@ -20,19 +20,19 @@ namespace Kaffemaskin
 
         public IFluentEspresso AddWater(int amount)
         {
+
             return this;
         }
 
         public IBeverage ToBeverage()
         {
-            string Coffe = 
-            return 
+            return this;
         }
     }
 
     interface IFluentEspresso
     {
-        IFluentEspresso AddWater(int amount);
+        IFluentEspresso AddWater();
 
         IFluentEspresso AddBeans();
 
