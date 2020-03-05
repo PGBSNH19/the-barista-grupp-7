@@ -9,10 +9,10 @@ namespace Kaffemaskin
         IBeverage AddWater(int amount);
         IBeverage AddBeans(string type);
   
-        void MakeCoffee(); 
+        void ToBeverage(); 
     }
 
-    class CoffeePart
+    class Ingredient
     {
         public string Name {get; set;}
         public bool gotMilk {get; set;}
@@ -21,37 +21,42 @@ namespace Kaffemaskin
         public int size {get; set;} 
     }
 
+    class Bean
+    {
+        public int AmountInG { get; set; }
+        public BeanSort Sort { get; set; }
+    }
     public class Espresso : IBeverage 
     {
-        private IEnumerable<CoffeePart> CoffeeParts {get;set;}
+        private IEnumerable<Ingredient> CoffeeParts {get;set;}
         private string Name {get; set;}
 
 
         public Espresso (string name)
         {
-            CoffeeParts = new List<CoffeePart>();
+            CoffeeParts = new List<Ingredient>();
             Name = name;
         }
 
         public IBeverage AddMilk(bool gotMilk)
         {
-            ((List<CoffeePart>)CoffeeParts).Add(new CoffeePart(){Name = "Milk", gotMilk = true});
+            ((List<Ingredient>)CoffeeParts).Add(new Ingredient(){Name = "Milk", gotMilk = true});
             return this;
         }
 
         public IBeverage AddWater(int amount)
         {
-            ((List<CoffeePart>)CoffeeParts).Add(new CoffeePart(){Name = "Water", amount = 30});
+            ((List<Ingredient>)CoffeeParts).Add(new Ingredient(){Name = "Water", amount = 30});
             return this;
         }
 
         public IBeverage AddBeans(string type)
         {
-            ((List<CoffeePart>)CoffeeParts).Add(new CoffeePart(){Name = "Roast", type="medium"});
+            ((List<Ingredient>)CoffeeParts).Add(new Ingredient(){Name = "Roast", type="medium"});
             return this;
         }
 
-        public void MakeCoffee()
+        public void ToBeverage()
         {
             foreach (var cp in CoffeeParts)
             {
