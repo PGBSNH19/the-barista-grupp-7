@@ -3,134 +3,59 @@ using System.Collections.Generic;
 
 namespace Kaffemaskin
 {
-    interface IBeverage
-    {
-        Ingredient Ingredient  { get; set; }
-
-    }
-
-    class Ingredient
-    {
-        public string Name {get; set;}
-        public int amount {get; set;}
-
-    }
-
-    public enum BeanSorts
-    {
-        Arabica,
-        Columbia,
-        Robusta
-    }
-
-    public class Water
-    {
-        public int Amount { get; set; }
-    }
-
-    public class Bean
-    {
-        public int AmountInG { get; set; }
-        public BeanSorts Sort { get; set; }
-    }
-
-
-
     class Program
     {
         static void Main(string[] args)
         {
+            BeverageRecipeFactory beverageRecipeFactory = new BeverageRecipeFactory();
+            IBeverageRecipe beverageRecipe = null;
 
-            IBeverage espresso = new FluentEspresso()
-                .AddWater(new Water() { Amount = 20 })
-                .ToBeverage();
-                
+            Console.WriteLine("Welcome to the coffeemachine!");
+            Console.WriteLine("Please choose coffee to make!");
+            Console.WriteLine("(1): Espresso (2): Latte (3): Americano (4): Macchiato (5): Mocha (6): Cappuccino");
 
-            //new Espresso("Latte")
-            //        .Milk(true)
-            //        .BeanRoast("Dark")
-            //        .Size(20)
-            //    .MakeCoffee();
+            var key = Console.ReadKey();
+            Console.Clear();
+
+            if (key.KeyChar == '1')
+                beverageRecipe = beverageRecipeFactory.getRecipe(CoffeeSort.Espresso);
+
+            else if (key.KeyChar == '2')
+                beverageRecipe = beverageRecipeFactory.getRecipe(CoffeeSort.Latte);
+
+            else if (key.KeyChar == '3')
+                beverageRecipe = beverageRecipeFactory.getRecipe(CoffeeSort.Americano);
+
+            else if (key.KeyChar == '4')
+                beverageRecipe = beverageRecipeFactory.getRecipe(CoffeeSort.Macchiato);
+
+            else if (key.KeyChar == '5')
+                beverageRecipe = beverageRecipeFactory.getRecipe(CoffeeSort.Mocha);
+
+            else if (key.KeyChar == '6')
+                beverageRecipe = beverageRecipeFactory.getRecipe(CoffeeSort.Cappucino);
+
+            else
+                throw new Exception("Fel val");
+
+            Console.WriteLine("Please choose cupsize!");
+            Console.WriteLine("(1): Small (2): Meduim (3): Large");
+
+            var nextKey = Console.ReadKey();
+            Console.Clear();
+
+            if (nextKey.KeyChar == '1')
+            {
+                beverageRecipe.MakeBeverage(CupSize.small).Print();
+            }
+            else if (nextKey.KeyChar == '2')
+            {
+                beverageRecipe.MakeBeverage(CupSize.medium).Print();
+            }
+            else if (nextKey.KeyChar == '3')
+            {
+                beverageRecipe.MakeBeverage(CupSize.large).Print();
+            }
         }
     }
-
-
-    //public IBeverage AddMilk(bool gotMilk)
-    //{
-    //    ((List<Ingredient>)Ingredients).Add(new Ingredient() { Name = "Milk", gotMilk = true });
-    //    return this;
-    //}
-
-    //public IBeverage AddWater(int amount)
-    //{
-    //    ((List<Ingredient>)Ingredients).Add(new Ingredient() { Name = "Water", amount = 30 });
-    //    return this;
-    //}
-
-    //public IBeverage AddBeans(string type)
-    //{
-    //    ((List<Ingredient>)Ingredients).Add(new Ingredient() { Name = "Roast", type = "medium" });
-    //    return this;
-    //}
-
-    //public void ToBeverage()
-    //{
-    //    foreach (var cp in Ingredients)
-    //    {
-    //        Console.WriteLine($"{Name} has {cp.gotMilk} {cp.Name} {cp.amount} {cp.type} {cp.size}");
-    //    }
-    //}
-
-
-    //class Coffee : ICoffee 
-    //{
-    //    public ICoffee GotMilk();
-    //    private IEnumerable<CoffeePart> CoffeParts {get; set; }
-    //    private string Name {get; set; }
-
-    //    public Coffee (string name)
-    //    {
-    //        CoffeParts = new List<CoffeePart>();
-    //        Name = name;
-    //    }
-
-    //}
-
-    //interface ICoffee
-    //{
-    //    ICoffee GotMilk();
-    //    ICoffee Size(int number);
-    //    ICoffee AddWater(int number);
-
-    //}
-
-    //class CoffeePart
-    //{
-
-    //}
-
-
-    //class Beans
-    //{
-    //    string[] roast = { "ljus", "mellan", "mörk" };
-    //    string[] country = { "Colombia", "Central America", "Arabica" };
-    //    bool eko;
-    //    string[] manufacturer = {"Gevalia", "Lövbergs Lila", "Starbucks" };
-
-    //}
-    //class Machine
-    //{
-    //    string sort;
-    //    string bean;
-    //    int temp;
-    //    int[] water = {2,4,6};
-    //    bool milk;
-
-    //}
-    //class Cup
-    //{
-    //    string[] size = { "small", "medium", "large" };
-    //    string[] sort = { "latte", "espresso", "black", "cappucino" };
-
-    //}
 }

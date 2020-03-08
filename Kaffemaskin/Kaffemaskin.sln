@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kaffemaskin", "Kaffemaskin\Kaffemaskin.csproj", "{4BB88BC0-9EE3-44D6-8DF2-1CBE01D8C4AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTest Kaffemaskin", "XUnitTest Kaffemaskin\XUnitTest Kaffemaskin.csproj", "{4377589B-4945-4D56-95B0-24DBA7E9AD8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeverageTest", "XUnitTest Kaffemaskin\BeverageTest.csproj", "{4377589B-4945-4D56-95B0-24DBA7E9AD8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
