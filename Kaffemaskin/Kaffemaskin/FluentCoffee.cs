@@ -49,7 +49,7 @@ namespace Kaffemaskin
             }
             Console.WriteLine("Heating done");
             Thread.Sleep(2000);
-            Console.Clear();
+            //Console.Clear();
 
             coffeeCup.Ingredients.Add("Temperature: " + temperature + "°C");
 
